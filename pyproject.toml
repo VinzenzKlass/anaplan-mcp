@@ -1,0 +1,51 @@
+[project]
+name = "anaplan-mcp"
+version = "0.0.1a"
+requires-python = ">=3.14"
+dependencies = [
+    "anaplan-sdk[cert,oauth]>=0.5.16",
+    "fastmcp>=3.2.4",
+    "httpx>=0.28.1",
+    "pydantic>=2.13.4",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.11",
+    "pre-commit>=4.3.0",
+    "polars>=1.40.0",
+    "basedpyright>=1.39.2",
+    "zensical>=0.0.33",
+]
+
+
+[project.scripts]
+anaplan-mcp = "anaplan_mcp.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pyright]
+typeCheckingMode = "strict"
+reportUnusedCallResult = false
+reportExplicitAny = false
+reportAny = false
+reportMissingTypeStubs = false
+reportUnusedClass = false
+
+[tool.ruff]
+respect-gitignore = false
+line-length = 100
+fix = true
+target-version = "py313"
+
+[tool.ruff.format]
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint.isort]
+split-on-trailing-comma = false
+known-first-party = ["anaplan_mcp"]
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I"]

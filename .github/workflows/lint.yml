@@ -1,0 +1,19 @@
+name: QA
+on: [ push, pull_request ]
+jobs:
+  Checks:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+        with:
+          python-version: 3.14.4
+          enable-cache: true
+      - name: Install Dependencies
+        run: uv sync --dev
+      - name: Ruff Checks
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+      - name: Run Basedpyright
+        run: uv run basedpyright --threads 8
