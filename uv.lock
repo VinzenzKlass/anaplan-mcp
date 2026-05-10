@@ -16,7 +16,7 @@ wheels = [
 
 [[package]]
 name = "anaplan-mcp"
-version = "0.0.1a0"
+version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "anaplan-sdk", extra = ["cert", "oauth"] },

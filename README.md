@@ -50,6 +50,34 @@ from anaplan_sdk._auth import AnaplanLocalOAuth
 AnaplanMCP(workspace_id="...", auth=AnaplanLocalOAuth(...)).run()
 ```
 
+### Running locally with non-standard auth
+
+For auth that can't be expressed as env vars (e.g. OAuth), create a local script and point
+your MCP client at it:
+
+**`server.py`**:
+```python
+from anaplan_sdk._auth import AnaplanLocalOAuth   # or any httpx.Auth subclass
+from anaplan_mcp import AnaplanMCP
+
+AnaplanMCP(
+    workspace_id="<your-workspace-id>",
+    auth=AnaplanLocalOAuth(client_id="...", client_secret="...", redirect_uri="..."),
+).run()
+```
+
+**MCP client config**:
+```json
+{
+  "mcpServers": {
+    "anaplan": {
+      "command": "uv",
+      "args": ["run", "/path/to/server.py"]
+    }
+  }
+}
+```
+
 ### Filtering tools
 
 ```python

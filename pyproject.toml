@@ -1,6 +1,10 @@
 [project]
 name = "anaplan-mcp"
-version = "0.0.1a"
+version = "0.0.1"
+description = "MCP Server for Anaplan."
+license = "Apache-2.0"
+authors = [{ name = "Vinzenz Klass", email = "vinzenz.klass@valantic.com" }]
+readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "anaplan-sdk[cert,oauth]>=0.5.16",
